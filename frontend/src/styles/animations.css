@@ -1,0 +1,60 @@
+/* ===============================
+   TRANSICIONES DE CAMBIO DE PLAZO
+   =============================== */
+
+/* Fade general para el organigrama */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* ===============================
+   ANIMACIÓN DE TARJETAS
+   =============================== */
+
+.org-node-animate {
+  animation: subtlePop 220ms ease-out;
+}
+
+@keyframes subtlePop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   BOTONES DE TIEMPO
+   =============================== */
+
+.time-button {
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.time-button-active {
+  box-shadow: 0 4px 14px rgba(0, 31, 84, 0.25);
+}
