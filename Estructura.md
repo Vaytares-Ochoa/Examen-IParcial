@@ -99,7 +99,18 @@ Frontend -->> Usuario: Confirmación
 ***
 
 ## ✅ Crear evento (tarea)
-
+```
+sequenceDiagram
+actor Usuario
+Usuario ->> Frontend: Crea tarea/evento
+Frontend ->> Backend: POST /evento
+Backend ->> DB: Validar puesto_id
+DB -->> Backend: OK
+Backend ->> DB: INSERT evento
+DB -->> Backend: OK
+Backend -->> Frontend: Evento creado
+Frontend -->> Usuario: Confirmación
+```
 
 
 ***
@@ -108,7 +119,30 @@ Frontend -->> Usuario: Confirmación
 
 👉 Este explica **cómo se distribuyen los datos**
 
+```
+classDiagram
+class Puesto {
+  id: number
+  nombre: string
+  parent_id: number
+}
 
+class Evento {
+  id: number
+  titulo: string
+  fecha_inicio: Date
+  estado: string
+  puesto_id: number
+}
+
+class DB {
+  guardarPuesto()
+  guardarEvento()
+}
+
+Puesto "1" --> "0..*" Puesto : jerarquía
+Puesto "1" --> "0..*" Evento : asigna
+```
 
 📌 EXPLICACIÓN IMPORTANTE:
 
@@ -123,7 +157,17 @@ Frontend -->> Usuario: Confirmación
 
 👉 Cómo se distribuyen los puestos
 
+```
+flowchart TD
+Director --> GerenteTI
+Director --> GerenteAdmin
 
+GerenteTI --> BackendLead
+GerenteTI --> FrontendLead
+
+BackendLead --> Evento1
+FrontendLead --> Evento2
+```
 
 📌 Interpretación:
 
@@ -136,7 +180,15 @@ Frontend -->> Usuario: Confirmación
 
 👉 Cómo interactúan los componentes
 
-
+```
+flowchart LR
+Usuario --> Frontend
+Frontend --> API
+API --> BD
+BD --> API
+API --> Frontend
+Frontend --> Usuario
+```
 
 ***
 
@@ -144,7 +196,17 @@ Frontend -->> Usuario: Confirmación
 
 👉 Cómo cambia una tarea
 
+```
+stateDiagram-v2
+[*] --> Programado
 
+Programado --> EnCurso : inicia
+EnCurso --> Completado : termina
+EnCurso --> Cancelado : cancelación
+
+Cancelado --> [*]
+Completado --> [*]
+```
 
 📌 Esto es clave para lógica de negocio
 
@@ -154,7 +216,16 @@ Frontend -->> Usuario: Confirmación
 
 👉 Cómo se distribuyen los datos al usuario
 
-
+```
+flowchart TD
+Inicio --> SolicitarDatos
+SolicitarDatos --> API
+API --> ConsultarDB
+ConsultarDB --> ConstruirArbol
+ConstruirArbol --> RespuestaJSON
+RespuestaJSON --> MostrarUI
+MostrarUI --> Fin
+```
 
 📌 CLAVE:
 👉 Aquí pasa lo más importante:
@@ -207,8 +278,3 @@ Frontend muestra:
 *   Calendario (eventos)
 
 ***
-✅ Documento completo tipo **entrega final (.md)**\
-✅ Explicación lista para exposición\
-✅ Posibles preguntas del profe basadas en esto
-
-Solo dime 😄
