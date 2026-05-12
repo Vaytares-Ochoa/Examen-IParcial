@@ -16,7 +16,23 @@ Primero entiende esto:
 👉 Aquí se muestra **cómo el usuario ingresa información**
 
 ## ✅ Crear puesto (jerarquía)
+```mermaid
+flowchart TD
+Inicio --> Usuario_UI
+Usuario_UI --> FormularioPuesto
+FormularioPuesto --> ValidarDatos
 
+ValidarDatos -->|Correcto| EnviarAPI
+ValidarDatos -->|Error| MostrarError
+
+EnviarAPI --> Backend
+Backend --> GuardarDB
+GuardarDB --> Confirmacion
+
+Confirmacion --> MostrarUI
+MostrarUI --> Fin
+MostrarError --> Fin
+```
 
 
 📌 EXPLICACIÓN:
