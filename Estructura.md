@@ -99,7 +99,7 @@ Frontend -->> Usuario: Confirmación
 ***
 
 ## ✅ Crear evento (tarea)
-```
+```mermaid
 sequenceDiagram
 actor Usuario
 Usuario ->> Frontend: Crea tarea/evento
@@ -119,7 +119,7 @@ Frontend -->> Usuario: Confirmación
 
 👉 Este explica **cómo se distribuyen los datos**
 
-```
+```mermaid
 classDiagram
 class Puesto {
   id: number
@@ -157,7 +157,7 @@ Puesto "1" --> "0..*" Evento : asigna
 
 👉 Cómo se distribuyen los puestos
 
-```
+```mermaid
 flowchart TD
 Director --> GerenteTI
 Director --> GerenteAdmin
@@ -180,7 +180,7 @@ FrontendLead --> Evento2
 
 👉 Cómo interactúan los componentes
 
-```
+```mermaid
 flowchart LR
 Usuario --> Frontend
 Frontend --> API
@@ -196,7 +196,7 @@ Frontend --> Usuario
 
 👉 Cómo cambia una tarea
 
-```
+```mermaid
 stateDiagram-v2
 [*] --> Programado
 
@@ -216,7 +216,7 @@ Completado --> [*]
 
 👉 Cómo se distribuyen los datos al usuario
 
-```
+```mermaid
 flowchart TD
 Inicio --> SolicitarDatos
 SolicitarDatos --> API
