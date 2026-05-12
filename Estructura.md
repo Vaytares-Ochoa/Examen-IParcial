@@ -49,7 +49,24 @@ MostrarError --> Fin
 ***
 
 ## ✅ Crear evento/tarea
+```mermaid
+flowchart TD
+Inicio --> UI_Evento
+UI_Evento --> FormularioEvento
+FormularioEvento --> ValidarEvento
 
+ValidarEvento -->|Correcto| API_Evento
+ValidarEvento -->|Error| ErrorUI
+
+API_Evento --> Backend_Evento
+Backend_Evento --> RelacionarPuesto
+
+RelacionarPuesto --> GuardarEvento
+GuardarEvento --> ConfirmacionEvento
+ConfirmacionEvento --> MostrarUI
+ErrorUI --> Fin
+MostrarUI --> Fin
+```
 
 
 📌 EXPLICACIÓN:
@@ -66,7 +83,17 @@ MostrarError --> Fin
 # 🔗 3. DIAGRAMA DE SECUENCIA — FLUJO DETALLADO
 
 ## ✅ Crear puesto
+```mermaid
+sequenceDiagram
+actor Usuario
+Usuario ->> Frontend: Llena formulario puesto
+Frontend ->> Backend: POST /puestos
+Backend ->> DB: INSERT puesto (parent_id)
+DB -->> Backend: OK
+Backend -->> Frontend: Respuesta OK
+Frontend -->> Usuario: Confirmación
 
+```
 
 
 ***
